@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>FinTrack Pro</title>
+</head>
+
+<body>
+
+    <main class="w-full min-h-screen bg-zinc-100">
+
+        <!-- top nav bar -->
+
+        <nav class="w-full fixed h-20 border-b z-1 border-zinc-300 bg-white text-black py-3 px-10 flex justify-between hidden">
+            <div class="w-1/2 flex gap-3 items-center">
+                <i
+                    class="ri-bubble-chart-fill text-4xl py-1 px-2 bg-gradient-to-r from-indigo-800 to-purple-500 text-white rounded-2xl"></i>
+                <h1
+                    class="text-3xl font-bold bg-gradient-to-r from-indigo-800 to-purple-500 bg-clip-text text-transparent">
+                    FinTrack Pro</h1>
+                <span
+                    class="bg-indigo-50 border border-indigo-200 text-blue-700 text-[0.8rem] py-0.5 px-2 rounded-lg">Enterprise</span>
+            </div>
+            <div class="flex gap-3 items-center">
+                <div
+                    class="h-11 w-11 flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-800 to-purple-500">
+                    <span class="text-xl text-white font-bold first-char">A</span>
+                </div>
+                <h2 class="text-lg font-semibold user-header-name">Anish Ansari</h2>
+                <button class="px-3 py-2  bg-gray-200 text-gray-700 rounded-xl flex items-center gap-2 font-semibold cursor-pointer active:scale-95 log-out"><i
+                        class="ri-logout-circle-r-line"></i>Logout</button>
+            </div>
+        </nav>
+
+
+        <!-- sidebar -->
+
+        <aside
+            class="w-[15%] fixed top-20 z-1 left-0 bottom-0 bg-white p-5 border-r border-zinc-300 flex flex-col gap-7 hidden">
+            <button
+                class="w-full bg-blue-800 py-3 rounded-xl flex items-center gap-1 hover:shadow-[2px_2px_10px_rgba(0,0,0,0.15)] active:scale-95 text-md text-white items-center justify-center font-semibold bg-gradient-to-r from-blue-700 to-purple-700 add-transection-btn"><i
+                    class="ri-add-line"></i>Add Transaction</button>
+            <div class="w-full flex flex-col gap-2">
+                <button
+                    class="w-full bg-indigo-50 border border-blue-200 rounded-xl flex item-center px-3 text-indigo-600 gap-1 hover:shadow-[2px_2px_10px_rgba(0,0,0,0.1)] active:scale-95 text-md py-3 font-semibold dashboard-btn"><i
+                        class="ri-donut-chart-line"></i>Dashboard</button>
+                <button
+                    class="w-full flex item-center px-3 text-zinc-600 gap-1 hover:bg-indigo-50 hover:border hover:border-blue-200 hover:text-indigo-600 hover:shadow-[2px_2px_10px_rgba(0,0,0,0.1)] active:scale-95 text-md py-3 font-semibold rounded-xl prefrences-aside-btn"><i
+                        class="ri-equalizer-line"></i>Prefrences</button>
+            </div>
+        </aside>
+
+        <!-- main content section -->
+
+        <section class="w-full flex flex-col hidden main-content">
+
+
+            <!-- financial overview section -->
+
+            <section class="w-[85%] ml-[15%] pt-28 p-7 flex flex-col gap-7">
+                <div>
+                    <h2 class="text-2xl font-bold">Financial Overview</h2>
+                    <p class="text-zinc-600">Real time enterprise tracking application and smart insights.</p>
+                </div>
+
+                <!-- balance income expense transection card section -->
+
+                <div class="w-full flex gap-5 cards-section"></div>
+
+                <!-- cash flow analysis chart section -->
+
+                <div class="flex w-full gap-7">
+                    <div class="w-[60%] flex flex-col gap-5 bg-white border border-zinc-300 rounded-xl p-5 relative">
+                        <div>
+                            <h3 class="text-xl font-semibold">Cash Flow Analysis</h3>
+                            <span class="text-[0.8rem] text-zinc-500">Visual Contrast of incoming revenue versus
+                                expenses over time</span>
+                        </div>
+                        <canvas id="cash-flow-chart" aria-label="Cash flow analysis" role="img"></canvas>
+                    </div>
+
+                    <!-- prefrences card section -->
+
+                    <div class="flex flex-col justify-between w-[40%] bg-white border border-zinc-300 rounded-xl p-5">
+                        <div class="w-full flex flex-col gap-5">
+                            <div>
+                                <h3 class="text-xl font-semibold">Prefrences</h3>
+                                <span class="text-[0.8rem] text-zinc-500">Tailor your app settings and data
+                                    controls</span>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-5 w-full h-20 bg-indigo-50/40 border border-zinc-200 rounded-xl">
+                                <div class="flex items-center gap-5">
+                                    <span class="bg-blue-200 p-2 text-blue-600 font-bold rounded-md"><i
+                                            class="ri-moon-fill"></i></span>
+                                    <div>
+                                        <h4 class="font-semibold text-md">Dark Theme</h4>
+                                        <span class="text-sm text-zinc-500">Toggle dark / light apperence</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-center">
+                                    <input type="checkbox" name="checkbox" id="toggle" class="peer sr-only">
+                                    <label for="toggle"
+                                        class="relative inline-block w-[4rem] h-[2rem] bg-[rgba(0,0,0,0.25)] rounded-full tansition-all duration-300 linear after:content-[''] after:absolute after:top-[0.1rem] after:left-[0.1rem] after:w-[1.8rem] after:h-[1.8rem] after:rounded-full after:bg-[#fff] peer-checked:after:translate-x-[2rem] after:transition-all after:duration-300 after:linear peer-checked:bg-blue-600"></label>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-5 w-full h-20 bg-indigo-50/40 border border-zinc-200 rounded-xl">
+                                <div class="flex items-center gap-5">
+                                    <span class="bg-green-200 px-3 py-2 text-green-600 font-bold rounded-md prefrences-currency">₹</span>
+                                    <div>
+                                        <h4 class="font-semibold text-md">Currency Unit</h4>
+                                        <span class="text-sm text-zinc-500">Indian Rupee (₹)</span>
+                                    </div>
+                                </div>
+                                <span class="px-2 bg-zinc-300 font-semibold rounded text-zinc-700">INR</span>
+                            </div>
+                        </div>
+                        <div class="w-full border-t border-zinc-300 pt-5">
+                            <button
+                                class="w-full flex gap-2 items-center cursor-pointer active:scale-95 justify-center py-2 border border-red-400 bg-red-100 rounded-xl text-red-500 font-semibold reset-all-transection"><i
+                                    class="ri-delete-bin-line"></i>Reset All Financial Data</button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- All transection section -->
+
+            <section class="w-[85%] ml-[15%] px-7 flex items-center justify-center pb-7">
+                <div class="bg-white w-full rounded-xl p-5 border border-zinc-300 flex flex-col gap-7">
+                    <div class="w-full flex justify-between ">
+                        <div>
+                            <h3 class="text-xl font-semibold text-zinc-800">All Transactions</h3>
+                            <p class="text-sm text-zinc-500">Comprehensive log of revenues and expenditures</p>
+                        </div>
+                        <div>
+                            <input type="search" placeholder="Search Descreption..."
+                                class="border pl-8 py-1 rounded-xl outline-none border-zinc-300 w-80 bg-[url('images/search.png')] bg-no-repeat bg-position-[10px_center] search">
+                            <select name="" id="" class="ml-3 border outline-none rounded-xl border-zinc-300 px-3 py-1 type">
+                                <option value="All Type">All Type</option>
+                                <option value="Income">Income</option>
+                                <option value="Expence">Expences</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-full border rounded-xl border-zinc-300 overflow-hidden">
+                        <table class="w-full border-collapse bg-white text-left text-sm">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-4 font-medium text-gray-900">Date</th>
+                                    <th class="px-6 py-4 font-medium text-gray-900">Description</th>
+                                    <th class="px-6 py-4 font-medium text-gray-900">Cetegory</th>
+                                    <th class="px-6 py-4 font-medium text-gray-900">Type</th>
+                                    <th class="px-6 py-4 font-medium text-gray-900 text-right">Amount</th>
+                                    <th class="px-6 py-4 font-medium text-gray-900 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-zinc-300 show-table-data">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+           
+
+        </section>
+
+
+        <!-- prefrences section -->
+
+        <section class="w-[85%] ml-[15%] pt-28 p-7 flex flex-col gap-7 hidden prefrences-section">
+            <div>
+                <h2 class="text-2xl font-bold">Prefrences</h2>
+                <p class="text-zinc-600">Manage Your account Profile and app formatting</p>
+            </div>
+            <div class="w-[60%] flex flex-col gap-5 p-5 h-60 bg-white rounded-xl">
+                <h3 class="text-2xl font-bold">Profile Details</h3>
+                <div class="w-full h-full">
+                    <form action="" class="flex h-full flex-col justify-between items-start profile-details-form">
+                        <div class="flex items-center justify-between gap-5 w-full">
+                            <div class="w-1/2">
+                                <label for="name">Full Name</label><br>
+                                <input type="text" name="" id="name" placeholder="Enter Name"
+                                    class="border border-zinc-300 w-full px-5 py-2 rounded-lg">
+                            </div>
+                            <div class="w-1/2">
+                                <label for="currency">Primary Currency</label><br>
+                                <select name="" id="currency"
+                                    class="border w-full border-zinc-300 px-5 py-2 rounded-lg">
+                                    <option value="$">USD ($)</option>
+                                    <option value="€">EUR (€)</option>
+                                    <option value="₹">INR (₹)</option>
+                                    <option value="£">GBP (£)</option>
+                                    <option value="¥">JPY (¥)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="px-5 py-2 bg-gradient-to-r from-blue-700 to-purple-700 text-white rounded-xl active:scale-95">Save
+                            Changes</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- register page section -->
+
+        <section class="flex items-center justify-center h-screen w-full hidden register-section">
+            <div
+                class="w-[30rem] h-[30rem] rounded-xl shadow-lg bg-white p-5 py-15 flex flex-col justify-between items-center">
+                <div class="flex flex-col gap-5 items-center">
+                    <h3 class="text-3xl font-bold">Create Account</h3>
+                    <span class="text-lg">Join FinTrack Pro</span>
+                </div>
+                <form action="" class="w-full flex flex-col gap-5 items-center register-form">
+                    <div class="w-full">
+                        <label for="username" class="font-medium">Choose a Username</label><br>
+                        <input type="text" name="" id="username" class="w-full border rounded-md px-2 py-2" required>
+                    </div>
+                    <div class="w-full">
+                        <label for="password" class="font-medium">Password</label>
+                        <input type="password" name="" id="password" class="w-full border rounded-md px-2 py-2"
+                            required>
+                    </div>
+                    <button class="w-full py-2 bg-green-600 rounded-md text-white font-semibold">Register</button>
+                    <p>Already have an account? <a href="" class="text-blue-700 login-link">Login here</a></p>
+                </form>
+            </div>
+        </section>
+
+
+        <!-- login page section -->
+
+
+        <section class="flex items-center justify-center h-screen w-full login-section ">
+            <div
+                class="w-[30rem] h-[30rem] rounded-xl shadow-lg bg-white p-5 py-15 flex flex-col justify-between items-center">
+                <div class="flex flex-col gap-5 items-center">
+                    <h3 class="text-3xl font-bold">Welcome Back</h3>
+                    <span class="text-lg">Login to FinTrack Pro</span>
+                </div>
+                <form action="" class="w-full flex flex-col gap-5 items-center login-form">
+                    <div class="w-full">
+                        <label for="username" class="font-medium">Username</label><br>
+                        <input type="text" name="" id="username" class="w-full border rounded-md px-2 py-2" required>
+                    </div>
+                    <div class="w-full">
+                        <label for="password" class="font-medium">Password</label>
+                        <input type="password" name="" id="password" class="w-full border rounded-md px-2 py-2"
+                            required>
+                    </div>
+                    <button class="w-full py-2 bg-blue-600 rounded-md text-white font-semibold ">Login</button>
+                    <p>Don't have an account? <a href="" class="text-blue-700 register-link">Register here</a></p>
+                </form>
+            </div>
+        </section>
+
+
+         <!-- Add transaction form section -->
+
+            <section class="w-full px-7 flex items-center justify-center pb-7 bg-black/40 h-full fixed top-0 flex items-center justify-center hidden add-transaction-section z-2">
+                <div class="w-100 bg-white rounded-xl p-5 flex flex-col gap-5">
+                    <div class="w-full flex items-center justify-between">
+                        <h3 class="text-xl font-semibold">Add Transaction</h3>
+                        <i class="ri-close-line text-2xl close cursor-pointer"></i>
+                    </div>
+                    <form action="" class="w-full flex flex-col gap-3 add-transection-form">
+                        <div class="w-full flex flex-col gap-2">
+                            <label for="type" class="font-medium">Type</label>
+                            <select name="" id="type" class="border border-zinc-300 bg-zinc-100 w-full p-2 rounded-lg">
+                                <option value="Expence">Expence</option>
+                                <option value="Income">Income</option>
+                            </select>
+                        </div>
+                        <div class="w-full flex flex-col gap-2">
+                            <label for="type" class="font-medium">Descreption</label>
+                            <input type="text" name="" id="" placeholder="e.g. Amazone, salare, coffee "
+                                class="border w-full p-2 rounded-lg border-zinc-300 bg-zinc-100" required>
+                        </div>
+                        <div class="w-full flex gap-4">
+                            <div>
+                                <label for="type" class="font-medium">Amount</label>
+                                <input type="number" name="" id="" placeholder=""
+                                    class="border w-full p-2 rounded-lg border-zinc-300 bg-zinc-100" required>
+                            </div>
+                            <div>
+                                <label for="type" class="font-medium">Date</label>
+                                <input type="date"  name="" id="date" placeholder=""
+                                    class="border w-full p-2 rounded-lg border-zinc-300 bg-zinc-100" required>
+                            </div>
+                        </div>
+                        <div class="w-full flex flex-col gap-2">
+                            <label for="type" class="font-medium">Cetegory</label>
+                            <select name="" id="type" class="border w-full p-2 rounded-lg border-zinc-300 bg-zinc-100">
+                                <option value="" selected disabled>Select a Category</option>
+                                <option value="Food & Dining">Food & Dining</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Recharge">Recharge & Bills</option>
+                                <option value="Petrol & Auto">Petrol & Auto</option>
+                                <option value="Utilities">Utilities</option>
+                                <option value="Salary">Salary</option>
+                                <option value="Entertainments">Entertainments</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <button class="w-full rounded-lg py-2 text-white bg-gradient-to-r from-blue-700 to-purple-700 mt-5 active:scale-95">Save Transection</button>
+                    </form>
+                </div>
+            </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
